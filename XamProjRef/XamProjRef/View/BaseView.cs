@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace XamProjRef1.View
 {
-    public class BaseView : ContentView
+    public class BaseView : ContentPage
     {
         public BaseView()
         {
