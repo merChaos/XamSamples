@@ -21,6 +21,14 @@ namespace XamProjRef1.VIewModel
             set { _Name = value; OnPropertyChanged(_NamePropertyName); } 
         }
 
+        private bool _IsBusy;
+        public const string _IsBusyPropertyName = "IsBusy";
+        public bool IsBusy 
+        {
+            get { return _IsBusy; }
+            set { _IsBusy = value; OnPropertyChanged(_IsBusyPropertyName); }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged(string propertyName)
