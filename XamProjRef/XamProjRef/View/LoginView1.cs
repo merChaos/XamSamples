@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,8 @@ namespace XamProjRef1.View
                 Placeholder = "User Id ",
                 MinimumHeightRequest = 20
             };
+            //userIdInput.Text = loginViewModel.UserId;
+            //userIdInput.SetBinding(Entry.TextProperty,LoginViewModel.UserId);
 
             var passwordInput = new Entry
             {
@@ -29,15 +32,19 @@ namespace XamProjRef1.View
                 MinimumWidthRequest = 60,
                 MinimumHeightRequest = 20
             };
+            passwordInput.Text = loginViewModel.Password;
+            //passwordInput.SetBinding(Entry.TextProperty, loginViewModel.Password);
+
 
             var loginButton = new Button
             {
                 Text = "Login",
                 BorderRadius = 4,
-                Command = loginViewModel.SubmitLogin,
                 MinimumWidthRequest = 60,
-                MinimumHeightRequest = 20
+                MinimumHeightRequest = 20,
+                Command = loginViewModel.SubmitLoginCommand
             };
+            //loginButton.SetBinding(Button.CommandProperty, LoginViewModel.SubmitLoginCommandName);
 
             Content = new StackLayout
             {
@@ -47,8 +54,8 @@ namespace XamProjRef1.View
                 Children = { userIdInput, passwordInput, loginButton}
             };
 
-            loginViewModel.UserId = userIdInput.Text;
-            loginViewModel.Password = passwordInput.Text;
+
+
         }
     }
 }

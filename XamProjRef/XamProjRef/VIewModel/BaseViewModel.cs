@@ -29,6 +29,14 @@ namespace XamProjRef1.VIewModel
             set { _IsBusy = value; OnPropertyChanged(_IsBusyPropertyName); }
         }
 
+        private string _Icon;
+        public const string _IconPropertyName = "Icon";
+        public string Icon
+        {
+            get { return _Icon; }
+            set { _Icon = value; OnPropertyChanged(_IconPropertyName); }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged(string propertyName)

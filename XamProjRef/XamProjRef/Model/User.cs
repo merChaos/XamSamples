@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace XamProjRef1.Model
 {
-    public class Login : BaseModel
+    public class User : BaseModel
     {
         public string UserId { get; set; }
         public string Password { get; set; }
