@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace XamProjRef1.VIewModel
+namespace XamProjRef1.ViewModel
 {
-    public class BaseViewModel : INotifyPropertyChanged 
+    public class BaseViewModel : IViewModel 
     {
         public BaseViewModel()
         {
@@ -45,6 +45,21 @@ namespace XamProjRef1.VIewModel
                 return;
 
             PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public virtual void Init(object args)
+        {
+            
+        }
+
+        public virtual void OnAppearing()
+        {
+            
+        }
+
+        public virtual void OnDisappearing()
+        {
+            
         }
     }
 }

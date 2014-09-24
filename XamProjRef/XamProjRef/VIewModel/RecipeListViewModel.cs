@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using XamProjRef1.Model;
 
-namespace XamProjRef1.VIewModel
+namespace XamProjRef1.ViewModel
 {
     public class RecipeListViewModel : BaseViewModel
     {

@@ -6,13 +6,23 @@ using System.Text;
 using System.Threading.Tasks;
 using XamProjRef1.Model;
 
-namespace XamProjRef1.VIewModel
+namespace XamProjRef1.ViewModel
 {
     public class RecipeViewModel : BaseViewModel
     {
         private Recipe _recipe;
 
+        public RecipeViewModel()
+        {
+            
+        }
 
+        public override void Init(object args)
+        {
+            this._recipe = args as Recipe;
+            Directions = new ObservableCollection<string>(_recipe.Directions);
+        }
+        
         public RecipeViewModel(Recipe recipe)
         {
             _recipe = recipe;
@@ -20,20 +30,6 @@ namespace XamProjRef1.VIewModel
         }
 
         public ObservableCollection<string> Directions { get; set; }
-
-        //public const 
-        //public string Name
-        //{
-        //    get { return _recipe != null ? _recipe.Name : null; }
-        //    set
-        //    {
-        //        if (_recipe != null)
-        //        {
-        //            _recipe.Name = value;
-        //        }
-
-        //    }
-        //}
 
         
         public string Description

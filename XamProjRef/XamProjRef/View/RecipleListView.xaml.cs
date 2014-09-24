@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using XamProjRef1.Model;
-using XamProjRef1.VIewModel;
+using XamProjRef1.ViewModel;
 
 namespace XamProjRef1.View
 {
-    public partial class RecipleListPage
+    public partial class RecipleListView
     {
-        public RecipleListPage()
+        public RecipleListView()
         {
             InitializeComponent();
             this.BindingContext = new RecipeListViewModel();
@@ -22,7 +22,8 @@ namespace XamProjRef1.View
             var recipe = args.Item as Recipe;
             if (recipe == null) return;
 
-            Navigation.PushAsync(new RecipeSummaryPage(new RecipeViewModel(recipe)));
+            App.NavigateTo<RecipeViewModel>(recipe);
+            //Navigation.PushAsync(new RecipeView(new RecipeViewModel(recipe)));
             this.recipeList.SelectedItem = null;
         }
     }

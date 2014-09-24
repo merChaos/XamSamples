@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using XamProjRef1.VIewModel;
+using XamProjRef1.ViewModel;
 
 namespace XamProjRef1.View
 {
@@ -46,7 +46,7 @@ namespace XamProjRef1.View
             };
             //loginButton.SetBinding(Button.CommandProperty, LoginViewModel.SubmitLoginCommandName);
 
-            Content = new StackLayout
+            new StackLayout
             {
                 Spacing = 10,
                 VerticalOptions = LayoutOptions.Center,

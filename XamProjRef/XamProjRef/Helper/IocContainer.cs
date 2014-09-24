@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XamProjRef1.Helper;
 using XamProjRef1.Service;
+using XamProjRef1.View;
+using XamProjRef1.ViewModel;
 
 namespace XamProjRef1
 {
@@ -19,6 +22,7 @@ namespace XamProjRef1
             // register all the Dependencies here. 
             builder.Register(x => new ServiceProxy()).As<IServiceProxy>().SingleInstance();
             builder.Register(x => new CommonServiceResult()).As<IServiceResult>().SingleInstance();
+            builder.Register(x => new PageLocator()).As<IPageLocator>().SingleInstance();
             Container = builder.Build();
         }
 

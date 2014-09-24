@@ -8,8 +8,9 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using XamProjRef1.Model;
 using XamProjRef1.Service;
+using XamProjRef1.View;
 
-namespace XamProjRef1.VIewModel
+namespace XamProjRef1.ViewModel
 {
     public class LoginViewModel : BaseViewModel
     {
@@ -127,6 +128,7 @@ namespace XamProjRef1.VIewModel
             u.UserId = this.UserId;
             u.Password = this.Password;
             var result = proxy.AuthenticateUser(u);
+            App.NavigateTo<DashboardViewModel>();
         }
 
         #endregion
