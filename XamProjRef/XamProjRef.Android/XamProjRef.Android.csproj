@@ -83,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\AndroidManifest.xml" />
+    <AndroidResource Include="Resources\Drawable\Home.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XamProjRef\XamProjRef.csproj">

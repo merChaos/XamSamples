@@ -16,9 +16,12 @@ namespace XamProjRef1.View
         public static Page FirstView
         {
             // check the logic to decide which page to load. 
-            get { return _rootVIew ?? (_rootVIew = new NavigationPage(new RecipleListView())); }
-            //get { return _rootVIew ?? (_rootVIew = new LoginView1(new LoginViewModel())); }
+            //get { return _rootVIew ?? (_rootVIew = new NavigationPage(new RecipleListView())); }
+            get { return _rootVIew ?? (_rootVIew = new NavigationPage(new LoginView1(new LoginViewModel()))); }
+            //get { return _rootVIew ?? (_rootVIew = new LoginView()); }
+            //get { return _rootVIew ?? (_rootVIew = new DashboardView()); }
         }
+
 
     }
 }

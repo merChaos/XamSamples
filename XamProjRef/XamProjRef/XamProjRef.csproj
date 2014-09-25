@@ -38,6 +38,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Helper\AutoFacPageLocator.cs" />
     <Compile Include="Helper\Extensions.cs" />
     <Compile Include="Helper\IocContainer.cs" />
     <Compile Include="Helper\IPageLocator.cs" />
@@ -65,8 +66,8 @@
     <Compile Include="View\RecipeView.xaml.cs">
       <DependentUpon>RecipeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\RecipleListView.xaml.cs">
-      <DependentUpon>RecipleListView.xaml</DependentUpon>
+    <Compile Include="View\RecipeListView.xaml.cs">
+      <DependentUpon>RecipeListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\RootView.cs" />
   </ItemGroup>
@@ -97,7 +98,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\RecipleListView.xaml">
+    <EmbeddedResource Include="View\RecipeListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

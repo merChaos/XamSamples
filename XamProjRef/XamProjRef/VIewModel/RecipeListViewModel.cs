@@ -14,7 +14,7 @@ namespace XamProjRef1.ViewModel
 
         public RecipeListViewModel()
         {
-            this.Name = "Recipes";
+            this.Title = "Recipes";
             Recipes = new ObservableCollection<Recipe>();
 
             Recipes.Add(new Recipe

@@ -9,16 +9,17 @@ namespace XamProjRef1.ViewModel
 {
     public class BaseViewModel : IViewModel 
     {
+
         public BaseViewModel()
         {
 
         }
 
-        private string _Name;
-        public const string _NamePropertyName = "Name";
-        public string Name 
-        {   get { return _Name;}
-            set { _Name = value; OnPropertyChanged(_NamePropertyName); } 
+        private string _Title;
+        public const string TitlePropertyName = "Title";
+        public string Title 
+        {   get { return _Title;}
+            set { _Title = value; OnPropertyChanged(TitlePropertyName); } 
         }
 
         private bool _IsBusy;
@@ -30,11 +31,11 @@ namespace XamProjRef1.ViewModel
         }
 
         private string _Icon;
-        public const string _IconPropertyName = "Icon";
+        public const string IconPropertyName = "Icon";
         public string Icon
         {
             get { return _Icon; }
-            set { _Icon = value; OnPropertyChanged(_IconPropertyName); }
+            set { _Icon = value; OnPropertyChanged(IconPropertyName); }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

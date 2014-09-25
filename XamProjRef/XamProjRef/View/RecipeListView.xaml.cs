@@ -9,9 +9,9 @@ using XamProjRef1.ViewModel;
 
 namespace XamProjRef1.View
 {
-    public partial class RecipleListView
+    public partial class RecipeListView
     {
-        public RecipleListView()
+        public RecipeListView()
         {
             InitializeComponent();
             this.BindingContext = new RecipeListViewModel();

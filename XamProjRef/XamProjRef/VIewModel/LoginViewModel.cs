@@ -108,8 +108,8 @@ namespace XamProjRef1.ViewModel
             }
             catch (Exception ex)
             {
-                //var page = new ContentPage();
-                //page.DisplayAlert("Error", "Oops!!! Something went wrong.Please try again", "OK", null);
+                var page = new ContentPage();
+                page.DisplayAlert("Error", ex.Message, "OK", null);
                 // Option 1 send the complete ex as email
                 // option 2 save in local db and do offline sync.
             }

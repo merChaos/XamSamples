@@ -14,9 +14,7 @@ namespace XamProjRef1.View
         public LoginView1(LoginViewModel loginViewModel)
         {
             //Padding = new Thickness(20);
-
-
-
+            
             var userIdInput = new Entry
             {
                 Placeholder = "User Id ",
@@ -46,7 +44,7 @@ namespace XamProjRef1.View
             };
             //loginButton.SetBinding(Button.CommandProperty, LoginViewModel.SubmitLoginCommandName);
 
-            new StackLayout
+            this.Content = new StackLayout
             {
                 Spacing = 10,
                 VerticalOptions = LayoutOptions.Center,
