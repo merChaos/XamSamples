@@ -14,6 +14,25 @@ namespace XamProjRef1.View
             this.Title = "Dashboard";
             this.Icon = "Home.png";
             //this.BackgroundColor = new Xamarin.Forms.Color(10, 20, 20, 5);
+
+            var backButton = new Button
+            {
+                Text = "Back",
+                BorderRadius = 4,
+                MinimumWidthRequest = 60,
+                MinimumHeightRequest = 20
+            };
+
+            backButton.SetBinding(Button.CommandProperty, "BackCommand");
+
+            this.Content = new StackLayout
+            {
+                Spacing = 10,
+                VerticalOptions = LayoutOptions.Center,
+                HorizontalOptions = LayoutOptions.Center,
+                Children = { backButton }
+            };
+
         }
     }
 }

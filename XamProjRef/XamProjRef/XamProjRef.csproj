@@ -59,10 +59,10 @@
     <Compile Include="View\BaseView.cs" />
     <Compile Include="ViewModel\IVIewModel.cs" />
     <Compile Include="View\DashboardView.cs" />
-    <Compile Include="View\LoginView.xaml.cs">
-      <DependentUpon>LoginView.xaml</DependentUpon>
+    <Compile Include="View\LoginViewXaml.xaml.cs">
+      <DependentUpon>LoginViewXaml.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\LoginView1.cs" />
+    <Compile Include="View\LoginView.cs" />
     <Compile Include="View\RecipeView.xaml.cs">
       <DependentUpon>RecipeView.xaml</DependentUpon>
     </Compile>
@@ -86,7 +86,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\LoginView.xaml">
+    <EmbeddedResource Include="View\LoginViewXaml.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

@@ -17,7 +17,7 @@ namespace XamProjRef1.View
         {
             // check the logic to decide which page to load. 
             //get { return _rootVIew ?? (_rootVIew = new NavigationPage(new RecipleListView())); }
-            get { return _rootVIew ?? (_rootVIew = new NavigationPage(new LoginView1(new LoginViewModel()))); }
+            get { return _rootVIew ?? (_rootVIew = new NavigationPage(new LoginView(new LoginViewModel()))); }
             //get { return _rootVIew ?? (_rootVIew = new LoginView()); }
             //get { return _rootVIew ?? (_rootVIew = new DashboardView()); }
         }

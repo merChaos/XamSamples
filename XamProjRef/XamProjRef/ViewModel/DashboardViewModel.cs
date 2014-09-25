@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace XamProjRef1.ViewModel
 {
@@ -11,6 +12,13 @@ namespace XamProjRef1.ViewModel
         public DashboardViewModel()
         {
 
+        }
+
+        public Command backCommand { protected set; get; }
+        public const string BackCommandName = "BackCommand";
+        public Command BackCommand
+        {
+            get { return backCommand ?? (backCommand = new Command(async () => await Task.Run(() => App.NavigateTo<LoginViewModel>()))); }
         }
     }
 }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace XamProjRef1.View
 {
-    public partial class LoginView
+    public partial class LoginViewXaml
     {
-        public LoginView()
+        public LoginViewXaml()
         {
             InitializeComponent();
         }

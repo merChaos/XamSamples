@@ -26,6 +26,7 @@ namespace XamProjRef1.ViewModel
         public LoginViewModel(IServiceProxy proxy)
         {
             this.proxy = proxy;
+              
         }
 
         #endregion
@@ -95,6 +96,7 @@ namespace XamProjRef1.ViewModel
         {
             if (IsBusy)
                 return;
+           
 
             IsBusy = true;
             try

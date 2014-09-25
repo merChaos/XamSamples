@@ -9,9 +9,9 @@ using XamProjRef1.ViewModel;
 
 namespace XamProjRef1.View
 {
-    public class LoginView1 : BaseView
+    public class LoginView : BaseView
     {
-        public LoginView1(LoginViewModel loginViewModel)
+        public LoginView(LoginViewModel loginViewModel)
         {
             //Padding = new Thickness(20);
             
