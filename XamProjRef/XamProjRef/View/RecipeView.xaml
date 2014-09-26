@@ -15,5 +15,7 @@
 		<Label Text="{Binding CookTime}"/>
 		<Label Text="Directions" TextColor="Red"/>
 		<ListView ItemsSource="{Binding Directions}"/>
+    <Button Text="Next Page" Command="{Binding NavigateToCommand}"></Button>
 	</StackLayout>
+  
 </ContentPage>

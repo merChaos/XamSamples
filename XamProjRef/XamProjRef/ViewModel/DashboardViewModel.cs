@@ -18,7 +18,7 @@ namespace XamProjRef1.ViewModel
         public const string BackCommandName = "BackCommand";
         public Command BackCommand
         {
-            get { return backCommand ?? (backCommand = new Command(async () => await Task.Run(() => App.NavigateTo<LoginViewModel>()))); }
+            get { return backCommand ?? (backCommand = new Command(() => App.NavigateTo<Page1ViewModel>())); }
         }
     }
 }

@@ -130,7 +130,7 @@ namespace XamProjRef1.ViewModel
             u.UserId = this.UserId;
             u.Password = this.Password;
             var result = proxy.AuthenticateUser(u);
-            App.NavigateTo<DashboardViewModel>();
+            App.NavigateTo<RecipeListViewModel>();
         }
 
         #endregion

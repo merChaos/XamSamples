@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 using XamProjRef1.Model;
 
 namespace XamProjRef1.ViewModel
@@ -69,6 +70,13 @@ namespace XamProjRef1.ViewModel
                 }
                 OnPropertyChanged("CookingTime");
             }
+        }
+
+        public const string NAVIGATE_TO_COMMAND_NAME = "NavigateToCommand";
+        public Command navigateToCommand { protected set; get; }
+        public Command NavigateToCommand
+        {
+            get { return navigateToCommand ?? (navigateToCommand = new Command(() => App.NavigateTo<DashboardViewModel>())); }
         }
     }
 }

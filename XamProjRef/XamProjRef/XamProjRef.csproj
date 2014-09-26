@@ -54,6 +54,7 @@
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\DashboardViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\Page1ViewModel.cs" />
     <Compile Include="ViewModel\RecipeListViewModel.cs" />
     <Compile Include="ViewModel\RecipeViewModel.cs" />
     <Compile Include="View\BaseView.cs" />
@@ -63,6 +64,9 @@
       <DependentUpon>LoginViewXaml.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LoginView.cs" />
+    <Compile Include="View\Page1View.xaml.cs">
+      <DependentUpon>Page1View.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\RecipeView.xaml.cs">
       <DependentUpon>RecipeView.xaml</DependentUpon>
     </Compile>
@@ -103,7 +107,12 @@
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="View\Page1View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.1.0.6186\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.1.0.6186\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
