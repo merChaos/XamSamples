@@ -73,11 +73,11 @@
     <Compile Include="View\Page1View.xaml.cs">
       <DependentUpon>Page1View.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\RecipeView.xaml.cs">
-      <DependentUpon>RecipeView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\RecipeListView.xaml.cs">
       <DependentUpon>RecipeListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RecipeView.xaml.cs">
+      <DependentUpon>RecipeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\RootView.cs" />
   </ItemGroup>
@@ -108,12 +108,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\RecipeView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="View\RecipeListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -121,6 +115,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="View\Page1View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\RecipeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
