@@ -14,7 +14,7 @@ namespace XamProjRef1.View
         public RecipeListView()
         {
             InitializeComponent();
-            this.BindingContext = new RecipeListViewModel();
+            //this.BindingContext = new RecipeListViewModel();
         }
 
         public void OnItemSelected(object sender, ItemTappedEventArgs args)
@@ -22,7 +22,9 @@ namespace XamProjRef1.View
             var recipe = args.Item as Recipe;
             if (recipe == null) return;
 
-            App.NavigateTo<RecipeViewModel>(recipe);
+            RecipeView page = new RecipeView();
+            App.Navigator.PushAsync(page);
+            //App.NavigateTo<RecipeViewModel>(recipe);
             //Navigation.PushAsync(new RecipeView(new RecipeViewModel(recipe)));
             this.recipeList.SelectedItem = null;
         }

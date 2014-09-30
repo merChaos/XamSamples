@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using XamProjRef1.BusinessLogic;
 using XamProjRef1.Model;
 using XamProjRef1.Service;
 using XamProjRef1.View;
@@ -129,7 +130,7 @@ namespace XamProjRef1.ViewModel
             User u = new User();
             u.UserId = this.UserId;
             u.Password = this.Password;
-            var result = proxy.AuthenticateUser(u);
+            var result = UserManager.AuthenticateUser(u);
             App.NavigateTo<RecipeListViewModel>();
         }
 

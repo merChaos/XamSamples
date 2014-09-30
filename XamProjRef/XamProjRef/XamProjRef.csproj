@@ -38,6 +38,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="BusinessLogic\UserManager.cs" />
     <Compile Include="Helper\AutoFacPageLocator.cs" />
     <Compile Include="Helper\Extensions.cs" />
     <Compile Include="Helper\IocContainer.cs" />
@@ -46,6 +47,7 @@
     <Compile Include="LocalDB\BaseDal.cs" />
     <Compile Include="LocalDB\IRepository.cs" />
     <Compile Include="LocalDB\ISQLiteConnection.cs" />
+    <Compile Include="LocalDB\UserDAL.cs" />
     <Compile Include="Model\BaseModel.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\Recipie.cs" />
@@ -55,6 +57,7 @@
     <Compile Include="Service\IServiceResult.cs" />
     <Compile Include="Service\ServiceProxy.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\DashboardMasterViewModel.cs" />
     <Compile Include="ViewModel\DashboardViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\Page1ViewModel.cs" />

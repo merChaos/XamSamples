@@ -11,12 +11,15 @@ namespace XamProjRef1
 {
     public class App
     {
-        private static INavigation navigator;
+        //private static INavigation navigator;
+
+        public static INavigation Navigator { get; set; }
+
         public static Page GetMainPage()
         {
             IocContainer.Build();
             var page = RootView.FirstView;
-            navigator = page.Navigation;
+            Navigator = page.Navigation;
             return page;
 
         }
@@ -24,7 +27,8 @@ namespace XamProjRef1
         public static void NavigateTo<T>(object args = null) 
         {
             var page = IocContainer.Resolve<IPageLocator>().ResolvePage(typeof(T), args);
-            navigator.PushAsync(page);
+            Navigator.PushAsync(page);
         }
+
     }
 }

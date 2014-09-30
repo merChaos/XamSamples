@@ -9,7 +9,7 @@ namespace XamProjRef1.LocalDB
 {
     interface IRepository<T> where T : BaseModel
     {
-        string Save(T entities);
+        string Save(T entity);
 
         bool Update(T entity);
 

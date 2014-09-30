@@ -14,14 +14,14 @@ namespace XamProjRef1.View
         public LoginView(LoginViewModel loginViewModel)
         {
             //Padding = new Thickness(20);
-            
+            this.BindingContext = loginViewModel;
             var userIdInput = new Entry
             {
                 Placeholder = "User Id ",
                 MinimumHeightRequest = 20
             };
             //userIdInput.Text = loginViewModel.UserId;
-            //userIdInput.SetBinding(Entry.TextProperty,LoginViewModel.UserId);
+            userIdInput.SetBinding(Entry.TextProperty, "UserId");
 
             var passwordInput = new Entry
             {
@@ -30,8 +30,8 @@ namespace XamProjRef1.View
                 MinimumWidthRequest = 60,
                 MinimumHeightRequest = 20
             };
-            passwordInput.Text = loginViewModel.Password;
-            //passwordInput.SetBinding(Entry.TextProperty, loginViewModel.Password);
+            //passwordInput.Text = loginViewModel.Password;
+            passwordInput.SetBinding(Entry.TextProperty, "Password");
 
 
             var loginButton = new Button
@@ -39,10 +39,10 @@ namespace XamProjRef1.View
                 Text = "Login",
                 BorderRadius = 4,
                 MinimumWidthRequest = 60,
-                MinimumHeightRequest = 20,
-                Command = loginViewModel.SubmitLoginCommand
+                MinimumHeightRequest = 20
+                //Command = loginViewModel.SubmitLoginCommand
             };
-            //loginButton.SetBinding(Button.CommandProperty, LoginViewModel.SubmitLoginCommandName);
+            loginButton.SetBinding(Button.CommandProperty, LoginViewModel.SubmitLoginCommandName);
 
             this.Content = new StackLayout
             {
