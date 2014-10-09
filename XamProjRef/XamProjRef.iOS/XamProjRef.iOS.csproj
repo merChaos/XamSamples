@@ -75,6 +75,8 @@
     <CodesignKey>iPhone Distribution</CodesignKey>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Common\Network\NetworkService.cs" />
+    <Compile Include="Common\Network\Reachability.cs" />
     <Compile Include="LocalDB\SQLiteConnection_iOS.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />

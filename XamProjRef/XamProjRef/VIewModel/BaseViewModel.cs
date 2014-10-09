@@ -4,15 +4,17 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XamProjRef1.Common.Network;
 
 namespace XamProjRef1.ViewModel
 {
     public class BaseViewModel : IViewModel 
     {
+        public INetworkService Network { get; private set; }
 
         public BaseViewModel()
         {
-
+            Network = IocContainer.Resolve<INetworkService>();
         }
 
         private string _Title;
@@ -55,7 +57,7 @@ namespace XamProjRef1.ViewModel
 
         public virtual void OnAppearing()
         {
-            
+            // check if Network available
         }
 
         public virtual void OnDisappearing()

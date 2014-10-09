@@ -95,6 +95,14 @@ namespace XamProjRef1.ViewModel
 
         private async Task ExecuteLogin()
         {
+
+            if (Network != null && !this.Network.IsConnected)
+            {
+                var page = new ContentPage();
+                page.DisplayAlert("Error", "No Network", "OK", null);
+            }
+
+
             if (IsBusy)
                 return;
            

@@ -39,6 +39,11 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="BusinessLogic\UserManager.cs" />
+    <Compile Include="Common\Network\AbstractNetworkService.cs" />
+    <Compile Include="Common\Network\INetworkService.cs" />
+    <Compile Include="Common\UserDialog\AlertConfig.cs" />
+    <Compile Include="Common\UserDialog\ConnfirmConfig.cs" />
+    <Compile Include="Common\UserDialog\IUserDialog.cs" />
     <Compile Include="Helper\AutoFacPageLocator.cs" />
     <Compile Include="Helper\Extensions.cs" />
     <Compile Include="Helper\IocContainer.cs" />
@@ -65,6 +70,7 @@
     <Compile Include="ViewModel\RecipeViewModel.cs" />
     <Compile Include="View\BaseView.cs" />
     <Compile Include="ViewModel\IVIewModel.cs" />
+    <Compile Include="View\DashboardMasterView.cs" />
     <Compile Include="View\DashboardView.cs" />
     <Compile Include="View\LoginViewXaml.xaml.cs">
       <DependentUpon>LoginViewXaml.xaml</DependentUpon>
@@ -125,6 +131,7 @@
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.1.0.6186\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.1.0.6186\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -15,6 +15,7 @@ namespace XamProjRef1.View
         {
             //Padding = new Thickness(20);
             this.BindingContext = loginViewModel;
+
             var userIdInput = new Entry
             {
                 Placeholder = "User Id ",
@@ -51,8 +52,6 @@ namespace XamProjRef1.View
                 HorizontalOptions = LayoutOptions.Center,
                 Children = { userIdInput, passwordInput, loginButton}
             };
-
-
 
         }
     }
