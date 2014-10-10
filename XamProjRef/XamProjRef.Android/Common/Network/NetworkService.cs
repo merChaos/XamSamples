@@ -1,25 +1,18 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using XamProjRef1.Common.Network;
 using System.Threading.Tasks;
-using Xamarin.Forms;
-
-using XamProjRef.Droid.Common.Network;
+using Android.App;
 using Android.Net;
 using Java.Net;
+using Xamarin.Forms;
+using XamProjRef.Droid.Common.Network;
+using XamProjRef1.Common.Network;
 
 [assembly: Dependency(typeof(NetworkService))]
+
+
 namespace XamProjRef.Droid.Common.Network
 {
+
     public class NetworkService : AbstractNetworkService
     {
 
@@ -31,7 +24,7 @@ namespace XamProjRef.Droid.Common.Network
         }
 
 
-        public void SetFromInfo(NetworkInfo network)
+        private void SetFromInfo(NetworkInfo network)
         {
             if (network == null || !network.IsConnected)
                 this.IsConnected = false;

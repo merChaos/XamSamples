@@ -100,6 +100,7 @@ namespace XamProjRef1.ViewModel
             {
                 var page = new ContentPage();
                 page.DisplayAlert("Error", "No Network", "OK", null);
+                return;
             }
 
 

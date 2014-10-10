@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using System;
+using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,21 +22,16 @@ namespace XamProjRef1
 
         public static void Build()
         {
-            var builder = new ContainerBuilder();
+             
+                // Register all the platform dependencies here
+            var builder = new ContainerBuilder()
+                .RegisterMvvmComponents(typeof(App).GetTypeInfo().Assembly) // will register the AutoFacPageLocator and all the View Models 
+                .RegisterPlatformDependency<INetworkService>(); // will resolve the platform specific dependency of INetworkService
 
-            //Register Service Classes
-            //builder.Container = new ContainerBuilder()
-            //    .RegisterMvvmComponents(typeof(App).GetTypeInfo().Assembly)
-            //    .RegisterXamDependency<INetworkService>()
-            //    .Build();
-
-
-            // register all the Dependencies here. 
-            builder.Register(x => new ServiceProxy()).As<IServiceProxy>().SingleInstance();
-            builder.Register(x => new CommonServiceResult()).As<IServiceResult>().SingleInstance();
-            builder.Register(x => new PageLocator()).As<IPageLocator>().SingleInstance();
-            builder.Register(x => new UserDAL()).As<IRepository<User>>().SingleInstance();
-            //builder.Register(x => DependencyService.Get<INetworkService>()).As<INetworkService>().SingleInstance();
+            // register all the other Dependencies here. 
+            builder.RegisterType<ServiceProxy>().As<IServiceProxy>().SingleInstance();
+            builder.RegisterType<CommonServiceResult>().As<IServiceResult>().SingleInstance();
+            builder.RegisterType<UserDAL>().As<IRepository<User>>().SingleInstance();
             Container = builder.Build();
         }
 
