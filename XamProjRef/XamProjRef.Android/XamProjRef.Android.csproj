@@ -80,8 +80,10 @@
   <ItemGroup>
     <Compile Include="Common\Network\NetworkConnectionBroadcastReceiver.cs" />
     <Compile Include="Common\Network\NetworkService.cs" />
+    <Compile Include="Common\UserDialog\UserDialogService.cs" />
     <Compile Include="LocalDB\SQLiteConnection_Android.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="PlatformHelper.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

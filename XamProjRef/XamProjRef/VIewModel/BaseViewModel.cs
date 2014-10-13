@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XamProjRef1.Common;
 using XamProjRef1.Common.Network;
 
 namespace XamProjRef1.ViewModel
@@ -11,10 +12,12 @@ namespace XamProjRef1.ViewModel
     public class BaseViewModel : IViewModel 
     {
         public INetworkService Network { get; private set; }
+        public IUserDialog UserDialog { get; private set; }
 
         public BaseViewModel()
         {
             Network = IocContainer.Resolve<INetworkService>();
+            UserDialog = IocContainer.Resolve<IUserDialog>();
         }
 
         private string _Title;

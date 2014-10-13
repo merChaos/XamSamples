@@ -10,6 +10,7 @@ using XamProjRef1.BusinessLogic;
 using XamProjRef1.Model;
 using XamProjRef1.Service;
 using XamProjRef1.View;
+using XamProjRef1.Helper;
 
 namespace XamProjRef1.ViewModel
 {
@@ -98,8 +99,7 @@ namespace XamProjRef1.ViewModel
 
             if (Network != null && !this.Network.IsConnected)
             {
-                var page = new ContentPage();
-                page.DisplayAlert("Error", "No Network", "OK", null);
+                UserDialog.Alert("No Network", "Error", "Ok", () => { this.UserId = "Hello"; });
                 return;
             }
 
@@ -120,8 +120,7 @@ namespace XamProjRef1.ViewModel
             }
             catch (Exception ex)
             {
-                var page = new ContentPage();
-                page.DisplayAlert("Error", ex.Message, "OK", null);
+                UserDialog.Alert(ex.Message,"Error" , "OK", null);
                 // Option 1 send the complete ex as email
                 // option 2 save in local db and do offline sync.
             }
@@ -136,6 +135,7 @@ namespace XamProjRef1.ViewModel
 
         private void ServiceCall()
         {
+            if (string.IsNullOrEmpty(this.UserId)) { UserDialog.Alert("User Id cannot be null","Validation"); }
             User u = new User();
             u.UserId = this.UserId;
             u.Password = this.Password;

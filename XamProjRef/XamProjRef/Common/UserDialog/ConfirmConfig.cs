@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace XamProjRef1.Common
 {
-    public class ConnfirmConfig
+    public class ConfirmConfig
     {
+        public ConfirmConfig()
+        {
+            this.CancelButtonText = "Cancel";
+            this.OkButtonText = "Ok";
+        }
+
         public string Title { get; set; }
 
         public string Message { get; set; }
@@ -15,5 +21,9 @@ namespace XamProjRef1.Common
         public string OkButtonText { get; set; }
 
         public string CancelButtonText { get; set; }
+
+        public Action<bool> OnConfirm { get; set; }
+
+
     }
 }

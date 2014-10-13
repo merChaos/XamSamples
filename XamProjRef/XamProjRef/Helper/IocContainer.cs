@@ -13,6 +13,7 @@ using XamProjRef1.Model;
 using XamProjRef1.Service;
 using XamProjRef1.View;
 using XamProjRef1.ViewModel;
+using XamProjRef1.Common;
 
 namespace XamProjRef1
 {
@@ -26,12 +27,14 @@ namespace XamProjRef1
                 // Register all the platform dependencies here
             var builder = new ContainerBuilder()
                 .RegisterMvvmComponents(typeof(App).GetTypeInfo().Assembly) // will register the AutoFacPageLocator and all the View Models 
-                .RegisterPlatformDependency<INetworkService>(); // will resolve the platform specific dependency of INetworkService
+                .RegisterPlatformDependency<INetworkService>() // will resolve the platform specific dependency of INetworkService
+                .RegisterPlatformDependency<IUserDialog>();
 
             // register all the other Dependencies here. 
             builder.RegisterType<ServiceProxy>().As<IServiceProxy>().SingleInstance();
             builder.RegisterType<CommonServiceResult>().As<IServiceResult>().SingleInstance();
             builder.RegisterType<UserDAL>().As<IRepository<User>>().SingleInstance();
+            
             Container = builder.Build();
         }
 

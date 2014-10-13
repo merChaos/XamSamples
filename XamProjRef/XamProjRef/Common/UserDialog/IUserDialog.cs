@@ -10,6 +10,14 @@ namespace XamProjRef1.Common
     {
         void Alert(AlertConfig config);
 
-        //void Confirm()
+        void Confirm(ConfirmConfig config);
+
+        IProgressDialog Progress(ProgressConfig config);
+
+        void ShowLoading(string title = "Loading...");
+
+        void HideLoading();
+
+        void Toast(string message, int timeoutSeconds = 3, Action onClick = null);
     }
 }

@@ -41,9 +41,13 @@
     <Compile Include="BusinessLogic\UserManager.cs" />
     <Compile Include="Common\Network\AbstractNetworkService.cs" />
     <Compile Include="Common\Network\INetworkService.cs" />
+    <Compile Include="Common\UserDialog\AbstractUserDialog.cs" />
     <Compile Include="Common\UserDialog\AlertConfig.cs" />
-    <Compile Include="Common\UserDialog\ConnfirmConfig.cs" />
+    <Compile Include="Common\UserDialog\ConfirmConfig.cs" />
+    <Compile Include="Common\UserDialog\IProgressDialog.cs" />
     <Compile Include="Common\UserDialog\IUserDialog.cs" />
+    <Compile Include="Common\UserDialog\ProgressConfig.cs" />
+    <Compile Include="Helper\AbstrctUserDialog.cs" />
     <Compile Include="Helper\AutoFacPageLocator.cs" />
     <Compile Include="Helper\Extensions.cs" />
     <Compile Include="Helper\IocContainer.cs" />
