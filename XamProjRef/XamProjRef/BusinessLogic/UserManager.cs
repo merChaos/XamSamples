@@ -31,5 +31,10 @@ namespace XamProjRef1.BusinessLogic
 
             return true;
         }
+
+        public static Task<IServiceResult> Test()
+        {
+            return serviceProxy.Test();
+        }
     }
 }

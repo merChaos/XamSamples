@@ -11,10 +11,10 @@ namespace XamProjRef1.Service
     {
         IServiceResult AuthenticateUser(User user);
 
-        //Task<IServiceResult> Test();
+        Task<IServiceResult> Test();
 
-        //Task<IServiceResult> GetCSRFToken();
+        Task<IServiceResult> GetCSRFToken();
 
-        //Task<IServiceResult> RegisterBreakdown(object breakdown);
+        Task<IServiceResult> RegisterBreakdown(object breakdown);
     }
 }

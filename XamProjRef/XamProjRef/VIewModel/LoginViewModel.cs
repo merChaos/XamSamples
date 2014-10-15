@@ -133,14 +133,16 @@ namespace XamProjRef1.ViewModel
 
         #region BL Calls
 
-        private void ServiceCall()
+        private async void ServiceCall()
         {
             if (string.IsNullOrEmpty(this.UserId)) { UserDialog.Alert("User Id cannot be null","Validation"); }
             User u = new User();
             u.UserId = this.UserId;
             u.Password = this.Password;
-            var result = UserManager.AuthenticateUser(u);
-            App.NavigateTo<RecipeListViewModel>();
+            IServiceResult result = await UserManager.Test();
+            UserDialog.Alert(result.ReturnObject.ToString(), "From Service Call");
+            //var result = UserManager.AuthenticateUser(u);
+            //App.NavigateTo<RecipeListViewModel>();
         }
 
         #endregion
