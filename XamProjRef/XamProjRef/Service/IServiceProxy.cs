@@ -10,5 +10,11 @@ namespace XamProjRef1.Service
     public interface IServiceProxy
     {
         IServiceResult AuthenticateUser(User user);
+
+        //Task<IServiceResult> Test();
+
+        //Task<IServiceResult> GetCSRFToken();
+
+        //Task<IServiceResult> RegisterBreakdown(object breakdown);
     }
 }
