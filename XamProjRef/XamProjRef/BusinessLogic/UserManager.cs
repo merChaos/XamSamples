@@ -34,7 +34,7 @@ namespace XamProjRef1.BusinessLogic
 
         public static Task<IServiceResult> Test()
         {
-            return serviceProxy.Test();
+            return serviceProxy.GetCSRFToken();
         }
     }
 }

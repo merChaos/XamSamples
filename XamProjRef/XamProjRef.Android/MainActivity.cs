@@ -8,6 +8,7 @@ using Android.Widget;
 using Android.OS;
 
 using Xamarin.Forms.Platform.Android;
+using System.Net;
 
 namespace XamProjRef1.Droid
 {
@@ -20,7 +21,16 @@ namespace XamProjRef1.Droid
 
             Xamarin.Forms.Forms.Init(this, bundle);
 
+            // Override the security check if as required
+            System.Net.ServicePointManager.ServerCertificateValidationCallback +=
+                            (se, cert, chain, sslerror) => { 
+                                // Assuming the certificate to be valid
+                                return true; 
+                            };
+
             SetPage(App.GetMainPage());
+
+           
         }
     }
 }

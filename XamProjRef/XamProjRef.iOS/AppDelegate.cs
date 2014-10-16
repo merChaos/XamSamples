@@ -29,6 +29,14 @@ namespace XamProjRef1.iOS
         {
             Forms.Init();
 
+            // Override the security check as required
+            System.Net.ServicePointManager.ServerCertificateValidationCallback +=
+                            (se, cert, chain, sslerror) =>
+                            {
+                                // Assuming the certificate to be valid
+                                return true;
+                            };
+            
             window = new UIWindow(UIScreen.MainScreen.Bounds);
 
             window.RootViewController = App.GetMainPage().CreateViewController();
