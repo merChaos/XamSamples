@@ -45,12 +45,21 @@ namespace XamProjRef1.View
             };
             loginButton.SetBinding(Button.CommandProperty, LoginViewModel.SubmitLoginCommandName);
 
+            var activity = new ActivityIndicator
+            {
+                IsEnabled = true
+            };
+            activity.SetBinding(ActivityIndicator.IsVisibleProperty, "IsBusy");
+            activity.SetBinding(ActivityIndicator.IsRunningProperty, "IsBusy");
+
+            
+
             this.Content = new StackLayout
             {
                 Spacing = 10,
                 VerticalOptions = LayoutOptions.Center,
                 HorizontalOptions = LayoutOptions.Center,
-                Children = { userIdInput, passwordInput, loginButton}
+                Children = { userIdInput, passwordInput, loginButton, activity }
             };
 
         }
