@@ -58,38 +58,46 @@ namespace XamProjRef1.Service
 
         public async Task<IServiceResult> GetCSRFToken()
         {
-            
-            //return null;
-            var serviceResult = IocContainer.Resolve<IServiceResult>();
-            HttpClient objClient = new HttpClient();
-            objClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            objClient.DefaultRequestHeaders.Add("LocalDBUser_CREATE|PASSWORD", "tjadmin");
-            objClient.DefaultRequestHeaders.Add("LocalDBUser_CREATE|USERNAME", "tjadmin");
-            objClient.DefaultRequestHeaders.Add("LocalDBUser_CREATE|COMPANY_NAME", "Assurant");
-
-            // Move the service URL to constant class for easy management. 
-
-            HttpResponseMessage respMsg = await objClient.PostAsync("https://gamma.appintegration.trumobi.com/Assurant/v1/BreakdownCall/CSRFTokenGeneration", new StringContent("", Encoding.UTF8, "application/json"));
-            if (respMsg.StatusCode == HttpStatusCode.OK)
+            try
             {
-                var requiredHeader = respMsg.Headers.ToList().Where(i => i.Key == "CSRF_Token").FirstOrDefault();
-                serviceResult.StatusCode = respMsg.StatusCode.ToString();
-                serviceResult.Message = "Success";
-                serviceResult.ReturnObject = requiredHeader.Value.FirstOrDefault();
-                
+
+                //return null;
+                var serviceResult = IocContainer.Resolve<IServiceResult>();
+                HttpClient objClient = new HttpClient();
+                objClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                objClient.DefaultRequestHeaders.Add("LocalDBUser_CREATE|PASSWORD", "tjadmin");
+                objClient.DefaultRequestHeaders.Add("LocalDBUser_CREATE|USERNAME", "tjadmin");
+                objClient.DefaultRequestHeaders.Add("LocalDBUser_CREATE|COMPANY_NAME", "Assurant");
+
+                // Move the service URL to constant class for easy management. 
+
+                HttpResponseMessage respMsg = await objClient.PostAsync("https://gamma.appintegration.trumobi.com/Assurant/v1/BreakdownCall/CSRFTokenGeneration", new StringContent("", Encoding.UTF8, "application/json"));
+                if (respMsg.StatusCode == HttpStatusCode.OK)
+                {
+                    var requiredHeader = respMsg.Headers.ToList().Where(i => i.Key == "CSRF_Token").FirstOrDefault();
+                    serviceResult.StatusCode = respMsg.StatusCode.ToString();
+                    serviceResult.Message = "Success";
+                    serviceResult.ReturnObject = requiredHeader.Value.FirstOrDefault();
+
+                }
+                else
+                {
+                    // check for error
+                    //Stream str = await respMsg.Content.ReadAsStreamAsync();
+                    // var result = DecompressData(str);
+                    // de serralize result to TJResult. 
+                    serviceResult.StatusCode = respMsg.StatusCode.ToString();
+                    serviceResult.Message = "Failure";
+                    serviceResult.ReturnObject = respMsg.Content;
+
+                }
+                return serviceResult;
             }
-            else
+            catch (Exception ex)
             {
-                // check for error
-                //Stream str = await respMsg.Content.ReadAsStreamAsync();
-               // var result = DecompressData(str);
-                // de serralize result to TJResult. 
-                serviceResult.StatusCode = respMsg.StatusCode.ToString();
-                serviceResult.Message = "Failure";
-                serviceResult.ReturnObject = respMsg.Content;
-                
+                Debug.WriteLine(ex.Message);
+                throw;
             }
-            return serviceResult;
         }
 
 
