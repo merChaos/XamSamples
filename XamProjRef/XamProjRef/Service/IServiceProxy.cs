@@ -16,5 +16,6 @@ namespace XamProjRef1.Service
         Task<IServiceResult> GetCSRFToken();
 
         Task<IServiceResult> RegisterBreakdown(object breakdown);
+
     }
 }

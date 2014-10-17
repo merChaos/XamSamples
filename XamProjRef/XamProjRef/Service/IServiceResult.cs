@@ -8,10 +8,12 @@ namespace XamProjRef1.Service
 {
     public interface IServiceResult
     {
-        int Code { get; set; }
+        string StatusCode { get; set; }
 
-        string ReturnMessage { get; set; }
+        string Message { get; set; }
 
         object ReturnObject { get; set; }
+
+        bool IsSuccess { get; set; }
     }
 }

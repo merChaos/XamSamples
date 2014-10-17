@@ -90,11 +90,18 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Properties\_SettingsStarted.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Autofac.3.5.2\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Refractored.Xam.Settings">
+      <HintPath>..\..\packages\Xam.Plugins.Settings.1.3.0.0\lib\MonoTouch10\Refractored.Xam.Settings.dll</HintPath>
+    </Reference>
+    <Reference Include="Refractored.Xam.Settings.Abstractions">
+      <HintPath>..\..\packages\Xam.Plugins.Settings.1.3.0.0\lib\MonoTouch10\Refractored.Xam.Settings.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="SQLite.Net">
       <HintPath>..\..\packages\SQLite.Net-PCL.2.3.0\lib\portable-net4+sl5+netcore45+wp8+MonoAndroid1+MonoTouch1\SQLite.Net.dll</HintPath>

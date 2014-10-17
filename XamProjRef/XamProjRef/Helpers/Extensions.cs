@@ -9,7 +9,7 @@ using Xamarin.Forms;
 using XamProjRef1.Common;
 using XamProjRef1.ViewModel;
 
-namespace XamProjRef1.Helper
+namespace XamProjRef1
 {
     public static class Extensions
     {

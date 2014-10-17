@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using XamProjRef1.Common.Network;
-using XamProjRef1.Helper;
 using XamProjRef1.LocalDB;
 using XamProjRef1.Model;
 using XamProjRef1.Service;

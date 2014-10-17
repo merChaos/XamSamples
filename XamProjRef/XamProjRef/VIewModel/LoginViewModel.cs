@@ -10,7 +10,7 @@ using XamProjRef1.BusinessLogic;
 using XamProjRef1.Model;
 using XamProjRef1.Service;
 using XamProjRef1.View;
-using XamProjRef1.Helper;
+
 
 namespace XamProjRef1.ViewModel
 {
@@ -139,7 +139,7 @@ namespace XamProjRef1.ViewModel
             User u = new User();
             u.UserId = this.UserId;
             u.Password = this.Password;
-            IServiceResult result = await UserManager.Test();
+            IServiceResult result = await UserManager.RegisterBreakdown();
             UserDialog.Alert(result.ReturnObject.ToString(), "From Service Call");
             //var result = UserManager.AuthenticateUser(u);
             //App.NavigateTo<RecipeListViewModel>();

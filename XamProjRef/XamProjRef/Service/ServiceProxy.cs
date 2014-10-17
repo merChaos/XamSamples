@@ -15,8 +15,8 @@ namespace XamProjRef1.Service
         public IServiceResult AuthenticateUser(User user)
         {
             var serviceResult = IocContainer.Resolve<IServiceResult>();
-            serviceResult.Code = 1; // some code that the BL will interepret
-            serviceResult.ReturnMessage = "Some message based on the actual service call";
+            serviceResult.StatusCode = "1"; // some code that the BL will interepret
+            serviceResult.Message = "Some message based on the actual service call";
             serviceResult.ReturnObject = user;
             return serviceResult;
         }
@@ -73,8 +73,8 @@ namespace XamProjRef1.Service
             if (respMsg.StatusCode == HttpStatusCode.OK)
             {
                 var requiredHeader = respMsg.Headers.ToList().Where(i => i.Key == "CSRF_Token").FirstOrDefault();
-                serviceResult.Code = 1;
-                serviceResult.ReturnMessage = "Success";
+                serviceResult.StatusCode = respMsg.StatusCode.ToString();
+                serviceResult.Message = "Success";
                 serviceResult.ReturnObject = requiredHeader.Value.FirstOrDefault();
                 
             }
@@ -84,8 +84,8 @@ namespace XamProjRef1.Service
                 //Stream str = await respMsg.Content.ReadAsStreamAsync();
                // var result = DecompressData(str);
                 // de serralize result to TJResult. 
-                serviceResult.Code = 0;
-                serviceResult.ReturnMessage = "Failure";
+                serviceResult.StatusCode = respMsg.StatusCode.ToString();
+                serviceResult.Message = "Failure";
                 serviceResult.ReturnObject = respMsg.Content;
                 
             }
@@ -96,7 +96,29 @@ namespace XamProjRef1.Service
 
         public Task<IServiceResult> RegisterBreakdown(object breakdown)
         {
-            throw new NotImplementedException();
+            /*
+             {"breakdownCall_CREATE": {
+"BreakdownCallInfo": {
+"Company":"Halifax",
+"Key":"79905c20ff2c3b20465b9df58bb0ecd3",
+"Location": {
+"Accuracy":"10.0",
+"Altitude":"0",
+"Latitude":"51.3",
+"Longitude":"-1.2"
+},
+"MembershipDetails": {
+"MembershipNo":"2313123",
+"MobileNumber":"1234567890",
+"Name":"234234",
+"VehicleReg":"232"
+}
+}
+}}
+
+             */
+            return null;
+           
         }
     }
 }

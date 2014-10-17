@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using XamProjRef1.ViewModel;
 
-namespace XamProjRef1.Helper
+namespace XamProjRef1
 {
     public class PageLocator: IPageLocator
     {
