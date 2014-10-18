@@ -111,7 +111,8 @@ namespace XamProjRef1.Service
                 HttpResponseMessage respMsg = await objClient.PostAsync("https://gamma.appintegration.trumobi.com/Assurant/v1/BreakdownCall/OrchbreakdownCallCREATE", new StringContent(breakDownPostData, Encoding.UTF8, "application/json"));
                 if (respMsg.StatusCode == HttpStatusCode.OK)
                 {
-                    var breakdownResponse = JsonConvert.DeserializeObject<BreakdownCreateResult.BreakdownCallCreateResult>(respMsg.Content.ToString());
+                    var responseContent = await respMsg.Content.ReadAsStringAsync();
+                    var breakdownResponse = JsonConvert.DeserializeObject<BreakdownCreateResult.BreakdownCallCreateResult>(responseContent);
                     serviceResult.StatusCode = respMsg.StatusCode.ToString();
                     serviceResult.Message = "Service Call Success"; // put any other message if required
                     serviceResult.ReturnObject = breakdownResponse;
@@ -119,10 +120,11 @@ namespace XamProjRef1.Service
                 else
                 {
                     //CHECK BREAK POINT ON DEVICE
+                    var responseContent = respMsg.Content.ToString();
                     var breakdownResponse = JsonConvert.DeserializeObject<BreakdownCreateResult.BreakdownCallCreateResult>(respMsg.Content.ToString());
                     serviceResult.StatusCode = respMsg.StatusCode.ToString();
-                    serviceResult.Message = "Access Denied";
-                    serviceResult.ReturnObject = csrfToken;
+                    serviceResult.Message = "Error";
+                    serviceResult.ReturnObject = responseContent;
                 }
                 return serviceResult;
             }
