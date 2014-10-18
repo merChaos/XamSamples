@@ -33,35 +33,6 @@ namespace XamProjRef1.BusinessLogic
             return true;
         }
 
-        public static async Task<IServiceResult> RegisterBreakdown()
-        {
-            SessionToken token = await ValidateToken();
-            // get the token id, set it in the header for the break down call. 
-            //var result = serviceProxy.GetCSRFToken();
-            return null;
-        }
-
-       
-
-        public async static Task<SessionToken> ValidateToken()
-        {
-            SessionToken token = Settings.Session;
-
-            if (token != null && token.SessionElapsedTime < 18) { return Settings.Session; }
-            else
-            {
-                var serviceResponse = await serviceProxy.GetCSRFToken();
-                if (serviceResponse.ReturnObject != null)
-                {
-                    var newToken = serviceResponse.ReturnObject;
-                    token = new SessionToken() { TokenId = newToken.ToString() };
-                    // Save the token in the global variable for uses;
-                    Settings.Session = token;
-                }
-            }
-
-            return token;
-        }
     }
 }
 
