@@ -35,6 +35,8 @@ namespace XamProjRef.Droid.Common.UserDialog
 
         public override void Confirm(ConfirmConfig config)
         {
+
+            // Do something here
             throw new NotImplementedException();
         }
 
