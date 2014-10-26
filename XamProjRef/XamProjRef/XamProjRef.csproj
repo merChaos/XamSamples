@@ -39,6 +39,7 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="BusinessLogic\UserManager.cs" />
+    <Compile Include="Common\Controls\Button\ImageButton.cs" />
     <Compile Include="Common\Network\AbstractNetworkService.cs" />
     <Compile Include="Common\Network\INetworkService.cs" />
     <Compile Include="Common\UserDialog\AbstractUserDialog.cs" />
