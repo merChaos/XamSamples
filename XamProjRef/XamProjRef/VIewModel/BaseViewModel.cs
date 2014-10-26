@@ -12,6 +12,8 @@ namespace XamProjRef1.ViewModel
     public class BaseViewModel : IViewModel 
     {
         public INetworkService Network { get; private set; }
+
+
         public IUserDialog UserDialog { get; private set; }
 
         public BaseViewModel()
