@@ -81,6 +81,7 @@
     <Compile Include="LocalDB\SQLiteConnection_iOS.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <None Include="app.config" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="packages.config" />
@@ -100,6 +101,9 @@
     </Reference>
     <Reference Include="BTProgressHUD">
       <HintPath>..\..\Components\btprogresshud-1.12\lib\ios\BTProgressHUD.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.5\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Refractored.Xam.Settings">
       <HintPath>..\..\packages\Xam.Plugins.Settings.1.3.0.0\lib\MonoTouch10\Refractored.Xam.Settings.dll</HintPath>
@@ -137,6 +141,9 @@
     </Reference>
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\..\packages\Xamarin.Forms.1.0.6186\lib\MonoTouch10\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="xBrainLab.Security.Cryptography">
+      <HintPath>..\..\xBrainLab.Security.Cryptography.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

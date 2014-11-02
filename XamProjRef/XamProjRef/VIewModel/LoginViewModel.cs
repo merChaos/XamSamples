@@ -10,6 +10,8 @@ using XamProjRef1.BusinessLogic;
 using XamProjRef1.Model;
 using XamProjRef1.Service;
 using XamProjRef1.View;
+using BreakdownCreate = XamProjRef1.Model.BreakdownCreate;
+using BreakdownCreateResult = XamProjRef1.Model.BreakdownCreateResult;
 
 
 namespace XamProjRef1.ViewModel
@@ -62,47 +64,20 @@ namespace XamProjRef1.ViewModel
         #region Commands
         // Command implementations
         public Command submitLoginCommand { protected set; get; }
-        public Command forgotPasswordCommand { protected set; get; }
-        public Command forgotUserIdCommand { protected set; get; }
-
         public const string SubmitLoginCommandName = "SubmitLoginCommand";
         public Command SubmitLoginCommand
         {
             get { return submitLoginCommand ?? (submitLoginCommand = new Command(async () => await ExecuteLogin())); }
         }
 
-        public const string ForgotPasswordCommandName = "ForgotPasswordCommand";
-        public Command ForgotPasswordCommand
-        {
-            get { return forgotPasswordCommand ?? (forgotPasswordCommand = new Command(async () => await ExecuteForgotPassword())); }
-        }
-
-        public const string ForgotUserIdCommandName = "ForgotUserIdCommand";
-        public Command ForgotUserIdCommand
-        {
-            get { return forgotUserIdCommand ?? (forgotUserIdCommand = new Command(async () => await ExecuteForgotUserId())); }
-        }
-
-
-        private async Task ExecuteForgotPassword()
-        {
-            // Navigate to Forgot Password page;
-        }
-
-        private async Task ExecuteForgotUserId()
-        {
-            // Navigate to Forgot userid page;
-        }
-
         private async Task ExecuteLogin()
         {
-
+            if (string.IsNullOrEmpty(this.UserId)) { UserDialog.Alert("User Id cannot be null", "Validation"); return; }
             if (Network != null && !this.Network.IsConnected)
             {
                 UserDialog.Alert("No Network", "Error", "Ok", () => { this.UserId = "Hello"; });
                 return;
             }
-
 
             if (IsBusy)
                 return;
@@ -111,12 +86,7 @@ namespace XamProjRef1.ViewModel
             IsBusy = true;
             try
             {
-                //await Task.Run(() =>
-                //    {
-                ServiceCall();
-                //}
-                //);
-
+                await ServiceCall();
             }
             catch (Exception ex)
             {
@@ -124,27 +94,30 @@ namespace XamProjRef1.ViewModel
                 // Option 1 send the complete ex as email
                 // option 2 save in local db and do offline sync.
             }
-
             IsBusy = false;
-
         }
 
         #endregion
 
         #region BL Calls
 
-        private async void ServiceCall()
+        private async Task ServiceCall()
         {
-            if (string.IsNullOrEmpty(this.UserId)) { UserDialog.Alert("User Id cannot be null","Validation"); }
-            User u = new User();
-            u.UserId = this.UserId;
-            u.Password = this.Password;
-            IServiceResult result = await UserManager.RegisterBreakdown();
-            UserDialog.Alert(result.ReturnObject.ToString(), "From Service Call");
+            //User u = new User();
+            //u.UserId = this.UserId;
+            //u.Password = this.Password;
             //var result = UserManager.AuthenticateUser(u);
             //App.NavigateTo<RecipeListViewModel>();
-        }
 
+            BreakdownCreate.Location location = new BreakdownCreate.Location();
+            location.Accuracy = "10.0";
+            location.Altitude = "0";
+            location.Latitude = "51.3";
+            location.Longitude = "-1.2";
+            BreakdownCreateResult.BreakdownCallCreateResult result = await BreakDownManager.RegisterBreakdown(location);
+            UserDialog.Alert(result.BreakDownCallMessage, "Breakdown Call Result");
+        }
+            
         #endregion
 
     }

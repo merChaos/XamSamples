@@ -23,6 +23,7 @@ namespace XamProjRef1
 
     private const string SettingsKey = "settings_key";
     private const string SessionTokenKey = "Session_Token";
+    private const string BreakDownCompanyName = "Breakdown_Company_Name";
     private static readonly string SettingsDefault = string.Empty;
 
     #endregion
@@ -47,6 +48,22 @@ namespace XamProjRef1
         get
         {
             return AppSettings.GetValueOrDefault(SessionTokenKey,default(SessionToken));
+        }
+        set
+        {
+            //if value has changed then save it!
+            if (AppSettings.AddOrUpdateValue(SessionTokenKey, value))
+                AppSettings.Save();
+        }
+    }
+
+    public static string CompanyName
+    {
+        get
+        {
+            var companyName = AppSettings.GetValueOrDefault(BreakDownCompanyName, "Halifax"); // 
+            if (string.IsNullOrEmpty(companyName)) { companyName = "Halifax"; }
+            return companyName;
         }
         set
         {

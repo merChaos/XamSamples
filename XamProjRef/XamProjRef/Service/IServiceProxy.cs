@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XamProjRef1.Model;
+using BreakdownCreate = XamProjRef1.Model.BreakdownCreate;
+using CSRFToken = XamProjRef1.Model.CSRFToken;
 
 namespace XamProjRef1.Service
 {
@@ -15,7 +17,7 @@ namespace XamProjRef1.Service
 
         Task<IServiceResult> GetCSRFToken();
 
-        Task<IServiceResult> RegisterBreakdown(object breakdown);
+        Task<IServiceResult> RegisterBreakdown(BreakdownCreate.BreakDownRootObject breakdown,string csrfToken);
 
     }
 }

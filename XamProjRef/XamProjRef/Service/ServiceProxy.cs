@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -7,6 +8,10 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using XamProjRef1.Model;
+using BreakdownCreate = XamProjRef1.Model.BreakdownCreate;
+using BreakdownCreateResult = XamProjRef1.Model.BreakdownCreateResult;
+using CSRFToken = XamProjRef1.Model.CSRFToken;
+
 
 namespace XamProjRef1.Service
 {
@@ -36,11 +41,6 @@ namespace XamProjRef1.Service
                 HttpClient client = new HttpClient();
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
                 var result = await client.GetAsync("https://gist.github.com/jamesmontemagno/a54af53e027308362415/raw/a828b194254b241281aad79cd362c33295fdb183/gistfile1.txt");
-                //PortableRest.RestClient client = new PortableRest.RestClient();
-                //PortableRest.RestRequest request = new PortableRest.RestRequest("https://gist.github.com/jamesmontemagno/a54af53e027308362415/raw/a828b194254b241281aad79cd362c33295fdb183/gistfile1.txt");
-                //request.Method = HttpMethod.Get;
-                //request.ContentType = PortableRest.ContentTypes.Json;
-                //var result = await client.ExecuteAsync<string>(request);
                 return result.ToString();
             }
             catch (Exception ex)
@@ -70,7 +70,6 @@ namespace XamProjRef1.Service
                 objClient.DefaultRequestHeaders.Add("LocalDBUser_CREATE|COMPANY_NAME", "Assurant");
 
                 // Move the service URL to constant class for easy management. 
-
                 HttpResponseMessage respMsg = await objClient.PostAsync("https://gamma.appintegration.trumobi.com/Assurant/v1/BreakdownCall/CSRFTokenGeneration", new StringContent("", Encoding.UTF8, "application/json"));
                 if (respMsg.StatusCode == HttpStatusCode.OK)
                 {
@@ -78,18 +77,14 @@ namespace XamProjRef1.Service
                     serviceResult.StatusCode = respMsg.StatusCode.ToString();
                     serviceResult.Message = "Success";
                     serviceResult.ReturnObject = requiredHeader.Value.FirstOrDefault();
-
                 }
                 else
                 {
-                    // check for error
-                    //Stream str = await respMsg.Content.ReadAsStreamAsync();
-                    // var result = DecompressData(str);
-                    // de serralize result to TJResult. 
+                    //CHECK BREAK POINT ON DEVICE
+                    var csrfToken = JsonConvert.DeserializeObject<CSRFToken.CSRFTokenRootObject>(respMsg.Content.ToString());
                     serviceResult.StatusCode = respMsg.StatusCode.ToString();
-                    serviceResult.Message = "Failure";
-                    serviceResult.ReturnObject = respMsg.Content;
-
+                    serviceResult.Message = "Access Denied";
+                    serviceResult.ReturnObject = csrfToken;
                 }
                 return serviceResult;
             }
@@ -102,31 +97,42 @@ namespace XamProjRef1.Service
 
 
 
-        public Task<IServiceResult> RegisterBreakdown(object breakdown)
+        public async Task<IServiceResult> RegisterBreakdown(BreakdownCreate.BreakDownRootObject breakdownRootObj, string csrfToken)
         {
-            /*
-             {"breakdownCall_CREATE": {
-"BreakdownCallInfo": {
-"Company":"Halifax",
-"Key":"79905c20ff2c3b20465b9df58bb0ecd3",
-"Location": {
-"Accuracy":"10.0",
-"Altitude":"0",
-"Latitude":"51.3",
-"Longitude":"-1.2"
-},
-"MembershipDetails": {
-"MembershipNo":"2313123",
-"MobileNumber":"1234567890",
-"Name":"234234",
-"VehicleReg":"232"
-}
-}
-}}
+            try
+            {
+                var serviceResult = IocContainer.Resolve<IServiceResult>();
+                HttpClient objClient = new HttpClient();
+                objClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                objClient.DefaultRequestHeaders.Add("CSRF_Token", csrfToken);
+                var breakDownPostData = JsonConvert.SerializeObject(breakdownRootObj);
 
-             */
-            return null;
-           
+                // Move the service URL to constant class for easy management. 
+                HttpResponseMessage respMsg = await objClient.PostAsync("https://gamma.appintegration.trumobi.com/Assurant/v1/BreakdownCall/OrchbreakdownCallCREATE", new StringContent(breakDownPostData, Encoding.UTF8, "application/json"));
+                if (respMsg.StatusCode == HttpStatusCode.OK)
+                {
+                    var responseContent = await respMsg.Content.ReadAsStringAsync();
+                    var breakdownResponse = JsonConvert.DeserializeObject<BreakdownCreateResult.BreakdownCallCreateResult>(responseContent);
+                    serviceResult.StatusCode = respMsg.StatusCode.ToString();
+                    serviceResult.Message = "Service Call Success"; // put any other message if required
+                    serviceResult.ReturnObject = breakdownResponse;
+                }
+                else
+                {
+                    //CHECK BREAK POINT ON DEVICE
+                    var responseContent = respMsg.Content.ToString();
+                    var breakdownResponse = JsonConvert.DeserializeObject<BreakdownCreateResult.BreakdownCallCreateResult>(respMsg.Content.ToString());
+                    serviceResult.StatusCode = respMsg.StatusCode.ToString();
+                    serviceResult.Message = "Error";
+                    serviceResult.ReturnObject = responseContent;
+                }
+                return serviceResult;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                throw;
+            }
         }
     }
 }
