@@ -50,5 +50,25 @@ namespace XamProjRef.iOS.Common.UserDialog
                 BTProgressHUD.ShowToast(message, false, ms);
             }); 
         }
+
+        public override void AlertWithInput(AlertInputConfig config)
+        {
+            Device.BeginInvokeOnMainThread(() =>
+                {
+                    var uiAlertView = new UIAlertView(config.AlertTitle, config.Message, null, config.CancelText, config.OkText)
+                    {
+                        AlertViewStyle = config.IsTextSecure ? UIAlertViewStyle.SecureTextInput : UIAlertViewStyle.PlainTextInput
+                    };
+                    var txt = uiAlertView.GetTextField(0);
+                    txt.Placeholder = config.PlaceHolder;
+                    txt.SecureTextEntry = config.IsTextSecure;
+                    
+                    uiAlertView.Clicked+= (sender, args) => 
+                        {
+                            config.OnActionCallBack(new AlertInputResult() { InputText = txt.Text, Ok = (uiAlertView.CancelButtonIndex != args.ButtonIndex) });
+                        };
+                    uiAlertView.Show();
+                });
+        }
     }
 }

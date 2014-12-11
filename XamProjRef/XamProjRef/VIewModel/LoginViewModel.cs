@@ -72,6 +72,13 @@ namespace XamProjRef1.ViewModel
 
         private async Task ExecuteLogin()
         {
+            UserDialog.AlertWithInput("Hello World",
+                (result) =>
+                {
+                    if (result.Ok) { UserDialog.Alert(result.InputText); }
+                    else { UserDialog.Alert(result.InputText + "False"); }
+                }, "Alert With Text");
+
             if (string.IsNullOrEmpty(this.UserId)) { UserDialog.Alert("User Id cannot be null", "Validation"); return; }
             if (Network != null && !this.Network.IsConnected)
             {

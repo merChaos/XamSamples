@@ -45,6 +45,7 @@
     <Compile Include="Common\Network\INetworkService.cs" />
     <Compile Include="Common\UserDialog\AbstractUserDialog.cs" />
     <Compile Include="Common\UserDialog\AlertConfig.cs" />
+    <Compile Include="Common\UserDialog\AlertInputConfig.cs" />
     <Compile Include="Common\UserDialog\ConfirmConfig.cs" />
     <Compile Include="Common\UserDialog\IProgressDialog.cs" />
     <Compile Include="Common\UserDialog\IUserDialog.cs" />

@@ -48,5 +48,9 @@ namespace XamProjRef1.Common
 
 
         protected abstract IProgressDialog CreatePlatformDialogInstance();
+
+
+        public abstract void AlertWithInput(AlertInputConfig config);
+        
     }
 }

@@ -12,6 +12,7 @@ using Android.Widget;
 using XamProjRef1.Common;
 using Xamarin.Forms;
 using XamProjRef.Droid.Common.UserDialog;
+using Android.Text.Method;
 
 [assembly: Dependency(typeof(UserDialogService))]
 
@@ -48,6 +49,25 @@ namespace XamProjRef.Droid.Common.UserDialog
         protected override IProgressDialog CreatePlatformDialogInstance()
         {
             throw new NotImplementedException();
+        }
+
+        public override void AlertWithInput(AlertInputConfig config)
+        {
+            PlatformHelper.RequestMainThread(() =>
+                {
+                    var text = new EditText(PlatformHelper.GetActiveContext()) { Hint = config.PlaceHolder };
+                    if (config.IsTextSecure) { text.TransformationMethod = PasswordTransformationMethod.Instance; }
+                    new AlertDialog.Builder(PlatformHelper.GetActiveContext())
+                    .SetMessage(config.Message)
+                    .SetTitle(config.AlertTitle)
+                    .SetView(text)
+                    .SetPositiveButton(config.OkText, (o, e) =>
+                        {
+                            config.OnActionCallBack(new AlertInputResult() { InputText = text.Text, Ok = true });
+                        })
+                    .SetNegativeButton(config.CancelText, (o, e) => { config.OnActionCallBack(new AlertInputResult() { Ok = false, InputText = text.Text }); }) 
+                    .Show();
+                });
         }
     }
 }

@@ -127,6 +127,22 @@ namespace XamProjRef1
             return tcs.Task;
         }
 
+        public static Task<AlertInputResult> AlertWithInputAsync(this IUserDialog dialogs, string message, string title = null, string okText = "OK", string cancelText = "Cancel", string placeholder = "", bool secure = false)
+        {
+            var tcs = new TaskCompletionSource<AlertInputResult>();
+            dialogs.AlertWithInput(message, tcs.SetResult, title, okText, cancelText, placeholder, secure);
+            return tcs.Task;
+        }
+
+
+        public static Task<AlertInputResult> AlertWithInputAsync(this IUserDialog dialogs, AlertInputConfig config)
+        {
+            var tcs = new TaskCompletionSource<AlertInputResult>();
+            config.OnActionCallBack = tcs.SetResult;
+            dialogs.AlertWithInput(config);
+            return tcs.Task;
+        }
+
   
         #endregion
 
@@ -174,6 +190,20 @@ namespace XamProjRef1
                 CancelText = cancelText,
                 IsDeterministic = true,
                 OnCancel = onCancel
+            });
+        }
+
+        public static void AlertWithInput(this IUserDialog dialogs, string message, Action<AlertInputResult> onResult, string title = null, string okText = "OK", string cancelText = "Cancel", string placeholder = null, bool secure = false)
+        {
+            dialogs.AlertWithInput(new AlertInputConfig
+            {
+                CancelText = cancelText,
+                Message = message,
+                OkText = okText,
+                OnActionCallBack = onResult,
+                AlertTitle = title,
+                PlaceHolder = placeholder,
+                IsTextSecure = secure
             });
         }
 
