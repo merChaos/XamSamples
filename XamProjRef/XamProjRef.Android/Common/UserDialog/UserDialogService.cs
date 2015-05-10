@@ -13,6 +13,7 @@ using XamProjRef1.Common;
 using Xamarin.Forms;
 using XamProjRef.Droid.Common.UserDialog;
 using Android.Text.Method;
+using AndroidHUD;
 
 [assembly: Dependency(typeof(UserDialogService))]
 
@@ -23,7 +24,7 @@ namespace XamProjRef.Droid.Common.UserDialog
         public override void Alert(AlertConfig config)
         {
             PlatformHelper.RequestMainThread(() => new AlertDialog
-            .Builder(PlatformHelper.GetActiveContext())
+            .Builder(PlatformHelper.GetActivityContext())
             .SetMessage(config.Message)
             .SetTitle(config.AlertTitle)
             .SetPositiveButton(config.OkButtonText, (o, e) =>
@@ -43,21 +44,31 @@ namespace XamProjRef.Droid.Common.UserDialog
 
         public override void Toast(string message, int timeoutSeconds = 3, Action onClick = null)
         {
-            throw new NotImplementedException();
+            PlatformHelper.RequestMainThread(() =>
+            {
+                onClick = onClick ?? (() => { });
+                AndHUD.Shared.ShowToast(
+                PlatformHelper.GetActivityContext(),
+                message,
+                MaskType.Clear,
+                TimeSpan.FromSeconds(timeoutSeconds),
+                false,
+                onClick);
+            });
         }
 
         protected override IProgressDialog CreatePlatformDialogInstance()
         {
-            throw new NotImplementedException();
+            return new ProgressDialogAndroid();
         }
 
         public override void AlertWithInput(AlertInputConfig config)
         {
             PlatformHelper.RequestMainThread(() =>
                 {
-                    var text = new EditText(PlatformHelper.GetActiveContext()) { Hint = config.PlaceHolder };
+                    var text = new EditText(PlatformHelper.GetActivityContext()) { Hint = config.PlaceHolder };
                     if (config.IsTextSecure) { text.TransformationMethod = PasswordTransformationMethod.Instance; }
-                    new AlertDialog.Builder(PlatformHelper.GetActiveContext())
+                    new AlertDialog.Builder(PlatformHelper.GetActivityContext())
                     .SetMessage(config.Message)
                     .SetTitle(config.AlertTitle)
                     .SetView(text)

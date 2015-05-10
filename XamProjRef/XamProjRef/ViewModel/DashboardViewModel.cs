@@ -22,14 +22,29 @@ namespace XamProjRef1.ViewModel
         {
             base.OnAppearing();
 
+            
+
             // Call the service method in the background and populate the no of characters from the servie call. 
-            var lengthTask = UserManager.GetStringLength();
+            
 
             this.StringLength = "Loading....";
-
-            var len = await lengthTask;
-            this.StringLength = len.ToString();
-             
+            using (var dlg = UserDialog.Progress("Progress"))
+            {
+                var lengthTask = UserManager.GetStringLength();
+                Random rnd = new Random();
+                while (dlg.PercentageComplete < 100)
+                {
+                    await Task.Delay(TimeSpan.FromSeconds(1));
+                    dlg.PercentageComplete += rnd.Next(0,10);
+                    if (lengthTask.IsCompleted && dlg.PercentageComplete < 99) 
+                    { 
+                        var remaining = (99 - dlg.PercentageComplete); 
+                        dlg.PercentageComplete += remaining; 
+                    }
+                }
+                var len = await lengthTask;
+                this.StringLength = len.ToString();
+            }      
         }
 
         public Command backCommand { protected set; get; }

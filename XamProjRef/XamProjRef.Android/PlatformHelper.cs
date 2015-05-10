@@ -41,7 +41,7 @@ namespace XamProjRef.Droid
             }
         }
 
-        public static Context GetActiveContext()
+        public static Context GetActivityContext()
         {
             return Forms.Context;
         }
