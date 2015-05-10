@@ -38,7 +38,7 @@ namespace XamProjRef1.BusinessLogic
                 if (location == null) { throw new ArgumentNullException("location"); }
 
                 //Guid Key = MD5(CompanyKey . MobileNumber . MembershipNo)
-                var hashInput = string.Concat(Settings.CompanyName, membership.MobileNumber, membership.MembershipNo);
+                var hashInput = string.Concat("Halifax", membership.MobileNumber, membership.MembershipNo);
                 //byte[] hash = MD5.GetHash(hashInput);
                 string key = MD5.GetHashString(hashInput);
 
@@ -73,10 +73,10 @@ namespace XamProjRef1.BusinessLogic
 
         public async static Task<SessionToken> ValidateToken()
         {
-            SessionToken token = Settings.Session;
+            SessionToken token = new SessionToken();
 
             //NOTE: 18 should be read from a configuration, chance that it can change later. 
-            if (token != null && token.SessionElapsedTime < 18) { return Settings.Session; }
+            if (token != null && token.SessionElapsedTime < 18) { return new SessionToken(); }
             else
             {
                 var serviceResponse = await ServiceProxy.GetCSRFToken();
@@ -85,7 +85,7 @@ namespace XamProjRef1.BusinessLogic
                     var newToken = serviceResponse.ReturnObject;
                     token = new SessionToken() { TokenId = newToken.ToString() };
                     // Save the token in the global variable for uses;
-                    Settings.Session = token;
+                    
                 }
             }
 

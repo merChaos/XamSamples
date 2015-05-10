@@ -33,6 +33,15 @@ namespace XamProjRef1.BusinessLogic
             return true;
         }
 
+        public static async Task<int> GetStringLength()
+        {
+            IServiceResult result = await serviceProxy.Test();
+
+            await Task.Delay(2000);
+
+            return result.ReturnObject.ToString().Length;
+        }
+
     }
 }
 

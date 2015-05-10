@@ -19,7 +19,7 @@ namespace XamProjRef.Droid.Common.Network
         public NetworkService()
         {
             NetworkConnectionBroadcastReceiver.OnChange = this.SetFromInfo;
-            var manager = (ConnectivityManager)Forms.Context.GetSystemService(Application.ConnectivityService);
+            var manager = (ConnectivityManager)Forms.Context.GetSystemService(Android.App.Application.ConnectivityService);
             this.SetFromInfo(manager.ActiveNetworkInfo);
         }
 

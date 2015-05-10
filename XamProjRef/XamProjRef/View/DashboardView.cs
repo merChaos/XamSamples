@@ -15,6 +15,13 @@ namespace XamProjRef1.View
             this.Icon = "Home.png";
             //this.BackgroundColor = new Xamarin.Forms.Color(10, 20, 20, 5);
 
+            var lblLength = new Label()
+            {
+                FontSize = 20.0
+            };
+            lblLength.SetBinding(Label.TextProperty, new Binding("StringLength", BindingMode.OneWay));
+
+
             var backButton = new Button
             {
                 Text = "Back",
@@ -30,7 +37,7 @@ namespace XamProjRef1.View
                 Spacing = 10,
                 VerticalOptions = LayoutOptions.Center,
                 HorizontalOptions = LayoutOptions.Center,
-                Children = { backButton }
+                Children = { backButton, lblLength }
             };
 
         }

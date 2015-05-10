@@ -76,7 +76,7 @@ namespace XamProjRef1.ViewModel
         public Command navigateToCommand { protected set; get; }
         public Command NavigateToCommand
         {
-            get { return navigateToCommand ?? (navigateToCommand = new Command(() => App.NavigateTo<DashboardViewModel>())); }
+            get { return navigateToCommand ?? (navigateToCommand = new Command(() => App.NavigateTo<DashboardViewModel>(null,true))); }
         }
     }
 }

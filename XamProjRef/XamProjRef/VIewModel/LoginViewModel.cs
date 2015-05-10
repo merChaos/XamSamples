@@ -72,19 +72,19 @@ namespace XamProjRef1.ViewModel
 
         private async Task ExecuteLogin()
         {
-            UserDialog.AlertWithInput("Hello World",
-                (result) =>
-                {
-                    if (result.Ok) { UserDialog.Alert(result.InputText); }
-                    else { UserDialog.Alert(result.InputText + "False"); }
-                }, "Alert With Text");
+            //UserDialog.AlertWithInput("Hello World",
+            //    (result) =>
+            //    {
+            //        if (result.Ok) { UserDialog.Alert(result.InputText); }
+            //        else { UserDialog.Alert(result.InputText + "False"); }
+            //    }, "Alert With Text");
 
-            if (string.IsNullOrEmpty(this.UserId)) { UserDialog.Alert("User Id cannot be null", "Validation"); return; }
-            if (Network != null && !this.Network.IsConnected)
-            {
-                UserDialog.Alert("No Network", "Error", "Ok", () => { this.UserId = "Hello"; });
-                return;
-            }
+            //if (string.IsNullOrEmpty(this.UserId)) { UserDialog.Alert("User Id cannot be null", "Validation"); return; }
+            //if (Network != null && !this.Network.IsConnected)
+            //{
+            //    UserDialog.Alert("No Network", "Error", "Ok", () => { this.UserId = "Hello"; });
+            //    return;
+            //}
 
             if (IsBusy)
                 return;
@@ -110,19 +110,19 @@ namespace XamProjRef1.ViewModel
 
         private async Task ServiceCall()
         {
-            //User u = new User();
-            //u.UserId = this.UserId;
-            //u.Password = this.Password;
-            //var result = UserManager.AuthenticateUser(u);
-            //App.NavigateTo<RecipeListViewModel>();
+        //    User u = new User();
+        //    u.UserId = this.UserId;
+        //    u.Password = this.Password;
+        //    var result = UserManager.AuthenticateUser(u);
+            App.NavigateTo<DashboardViewModel>();
 
-            BreakdownCreate.Location location = new BreakdownCreate.Location();
-            location.Accuracy = "10.0";
-            location.Altitude = "0";
-            location.Latitude = "51.3";
-            location.Longitude = "-1.2";
-            BreakdownCreateResult.BreakdownCallCreateResult result = await BreakDownManager.RegisterBreakdown(location);
-            UserDialog.Alert(result.BreakDownCallMessage, "Breakdown Call Result");
+            //BreakdownCreate.Location location = new BreakdownCreate.Location();
+            //location.Accuracy = "10.0";
+            //location.Altitude = "0";
+            //location.Latitude = "51.3";
+            //location.Longitude = "-1.2";
+            //BreakdownCreateResult.BreakdownCallCreateResult result = await BreakDownManager.RegisterBreakdown(location);
+            //UserDialog.Alert(result.BreakDownCallMessage, "Breakdown Call Result");
         }
             
         #endregion

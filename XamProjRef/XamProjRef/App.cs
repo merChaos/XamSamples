@@ -26,7 +26,7 @@ namespace XamProjRef1
         public static void NavigateTo<T>(object args = null, bool hideBackButton = false) 
         {
             var page = IocContainer.Resolve<IPageLocator>().ResolvePage(typeof(T), args);
-            if (hideBackButton) { Navigator.PushModalAsync(page); }
+            if (hideBackButton) { Navigator.PushModalAsync(page,false); }
             else {Navigator.PushAsync(page);}
         }
 

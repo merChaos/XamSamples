@@ -2,7 +2,7 @@
 using Refractored.Xam.Settings;
 using Refractored.Xam.Settings.Abstractions;
 
-namespace XamProjRef1
+namespace XamProjRef1.Helpers
 {
   /// <summary>
   /// This is the Settings static class that can be used in your Core solution or in any
@@ -22,8 +22,6 @@ namespace XamProjRef1
     #region Setting Constants
 
     private const string SettingsKey = "settings_key";
-    private const string SessionTokenKey = "Session_Token";
-    private const string BreakDownCompanyName = "Breakdown_Company_Name";
     private static readonly string SettingsDefault = string.Empty;
 
     #endregion
@@ -37,58 +35,8 @@ namespace XamProjRef1
       }
       set
       {
-        //if value has changed then save it!
-        if (AppSettings.AddOrUpdateValue(SettingsKey, value))
-          AppSettings.Save();
+        AppSettings.AddOrUpdateValue(SettingsKey, value);
       }
-    }
-
-    public static SessionToken Session
-    {
-        get
-        {
-            return AppSettings.GetValueOrDefault(SessionTokenKey,default(SessionToken));
-        }
-        set
-        {
-            //if value has changed then save it!
-            if (AppSettings.AddOrUpdateValue(SessionTokenKey, value))
-                AppSettings.Save();
-        }
-    }
-
-    public static string CompanyName
-    {
-        get
-        {
-            var companyName = AppSettings.GetValueOrDefault(BreakDownCompanyName, "Halifax"); // 
-            if (string.IsNullOrEmpty(companyName)) { companyName = "Halifax"; }
-            return companyName;
-        }
-        set
-        {
-            //if value has changed then save it!
-            if (AppSettings.AddOrUpdateValue(SessionTokenKey, value))
-                AppSettings.Save();
-        }
-    }
-
-    public static void AddSettings(string key, string value)
-    {
-        if (AppSettings.AddOrUpdateValue(key, value))
-            AppSettings.Save();
-    }
-
-    public static void AddSettings<T>(string key, T value)
-    {
-        if (AppSettings.AddOrUpdateValue(key, value))
-            AppSettings.Save();   
-    }
-
-
-    public static T GetSettings<T>(string key)
-    {
-        return AppSettings.GetValueOrDefault(key,default(T));
     }
 
   }

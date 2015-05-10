@@ -18,13 +18,13 @@ namespace XamProjRef.Droid
     {
         public static void RequestMainThread(Action action)
         {
-            if (Application.SynchronizationContext == SynchronizationContext.Current)
+            if (Android.App.Application.SynchronizationContext == SynchronizationContext.Current)
             {
                 action();
             }
             else
             {
-                Application.SynchronizationContext.Post(x => MaskedException(action), null);
+                Android.App.Application.SynchronizationContext.Post(x => MaskedException(action), null);
             }
         }
 
